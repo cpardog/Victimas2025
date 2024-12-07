@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RptResumen" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d25be8fe-00c4-4b53-9482-b91113f39418">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Dataresol1"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT month(fecha_resolucion) as mes,
+ year(fecha_resolucion) as vigencia,  
+ count(*)  as cant_Res, sum(monto_resolucion) as Total ,
+  sum(fam_beneficiarias) as TotalBenef 
+from resoluciones  
+group by mes,vigencia order by vigencia,mes;]]>
+	</queryString>
+	<field name="mes" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="mes"/>
+	</field>
+	<field name="vigencia" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="vigencia"/>
+	</field>
+	<field name="cant_Res" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cant_Res"/>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Total"/>
+	</field>
+	<field name="TotalBenef" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TotalBenef"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="34" width="460" height="30" uuid="dcaf3ddc-c250-4d37-95cd-661a1a28c56b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="23" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumen de Resoluciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="34" width="100" height="30" uuid="15342b50-4320-4139-b56f-ef77dbe0d727"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[TODAY( )]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="31" width="100" height="30" uuid="f8225eac-9f38-4787-a6ca-e2d722f72bc9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vigencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="30" width="100" height="30" uuid="337a1107-0684-49c2-91ee-2b4cf34d224a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="30" width="110" height="30" uuid="21fb8628-2fda-4ae2-8a71-5728d8535172"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total  Ayudas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="30" width="130" height="30" uuid="38ebb82c-34e8-457f-bbbf-ca1f0e132e2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Beneficiarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="100" height="30" uuid="c9b48c6c-8287-47b0-a976-b9b9344addb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="10" width="100" height="20" uuid="b1a8af13-5ba9-4762-a7c1-fdf6361c8826"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vigencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="10" width="100" height="20" uuid="68f91bb3-d177-446a-8189-a099bdde7788"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cant_Res}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="10" width="100" height="20" uuid="8b99cd45-c397-4459-8220-5e46689081a3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="10" width="110" height="20" uuid="5abb1f9d-1689-43e2-a821-7f491c412515"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TotalBenef}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="10" width="100" height="20" uuid="3a1528bb-c7ed-4341-85f1-92c280f29e36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="320" y="19" width="124" height="30" uuid="51d899f2-3c54-4a11-8c30-1a611c39b5c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total meses Reportados]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="520" y="19" width="50" height="30" uuid="79706ef8-8ce3-40a4-9474-b1a05d39ae46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
